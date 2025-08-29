@@ -1,0 +1,28 @@
+JAGADEESWAR SILPI
+Hyderabad, IN • +91-90000 00000 • jagadeeswar@email.com • linkedin.com/in/jagadeeswar • github.com/jagadeeswar
+
+SUMMARY
+AI/ML engineer with hands-on experience building end-to-end machine learning systems and full‑stack apps.
+Strong in Python, data pipelines, model training, and deployment (Flask/Streamlit).
+
+SKILLS
+Python, Pandas, NumPy, Scikit-learn, TensorFlow, PyTorch, NLP, Computer Vision,
+SQL, PostgreSQL, Docker, Git, Linux, AWS, FastAPI, Flask, Streamlit, Power BI
+
+PROJECTS
+Plant Leaf Disease Detection using Ensemble Learning and Explainable AI
+- Built an ensemble of CNN models; achieved 94% test accuracy. Explained predictions via Grad-CAM.
+- Deployed as a Streamlit app with Docker on AWS EC2; handled 1k+ monthly users.
+
+Mental Health Risk Prediction from Social Media (ML + Ensemble + AI)
+- Collected and preprocessed 50k posts. Engineered features with TF‑IDF and transformers.
+- Trained voting classifier achieving F1 0.87; produced clinician‑readable explanations.
+
+EXPERIENCE
+ML Intern, ABC Labs (2024 – 2025)
+- Automated labeling pipeline; reduced manual effort by 60%.
+- Built FastAPI microservice for inference (<200ms p95).
+
+EDUCATION
+B.Tech, 2025 — CBIT
+Certifications: LAND Graph Certificate; AWS Cloud Practitioner (in progress)
