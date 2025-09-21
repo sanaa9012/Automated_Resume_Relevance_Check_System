@@ -1,6 +1,11 @@
-streamlit>=1.36
-python-dotenv>=1.0.1
-openai>=1.40.0
-PyPDF2>=3.0.1
-docx2txt>=0.8
-tqdm>=4.66.4
+streamlit
+numpy
+pandas
+sentence-transformers
+scikit-learn
+PyPDF2
+python-docx
+docx2txt
+python-dotenv
+altair
+google-generativeai
