@@ -1,78 +1,112 @@
-# 🧠 ATS Resume Score Checker (AI‑assisted) — Streamlit
+# Automated Resume Relevance Check System
 
-A one‑file web app that scores a resume against a job description (ATS‑style) and optionally uses OpenAI to generate actionable improvement tips.
+A **Streamlit-based web application** to evaluate resumes against job descriptions (JDs) using **keyword matching** and **semantic similarity embeddings**.
+The system also provides **AI suggestions** (placeholder for Gemini AI) to improve resumes for better alignment with JDs.
 
-## ✨ Features
-- Upload **PDF/DOCX/TXT** resume or paste text
-- Paste job description or upload TXT
-- **Deterministic ATS score (0–100)** with a **clear breakdown**
-- Missing/covered keyword analysis (unigrams + key phrases)
-- Section checks (Education, Experience, Projects, Skills), contact info validation
-- Bullet quality estimate (metrics/action verbs)
-- Length/readability heuristics
-- **Optional AI** suggestions using OpenAI Responses API (`gpt-4o-mini` by default)
-- Downloadable analysis report
+---
 
-## 🧩 Tech
-- Python 3.9+
-- Streamlit
-- OpenAI Python SDK (optional)
-- PyPDF2, docx2txt
+## Features
 
-## 🚀 Quickstart
+* Upload multiple **Resumes** and **Job Descriptions** in PDF, DOCX, or TXT format.
+* **Evaluate all resumes** against all JDs:
 
-1) **Create & activate a virtual environment**
-```bash
-python -m venv .venv
-# Windows
-.venv\Scripts\activate
-# macOS/Linux
-source .venv/bin/activate
-```
+  * **Keyword match score**
+  * **Semantic similarity score** (using `sentence-transformers`)
+  * **Final score** & **verdict** (High / Medium / Low)
+* **View summary charts** of evaluation results.
+* **Download CSV reports** per JD.
+* **AI suggestions** for top resumes (Gemini AI placeholder).
+* **Embedded caching** of text embeddings for faster processing.
+* **Delete uploaded files** and associated evaluations.
 
-2) **Install dependencies**
+---
+
+## Requirements
+
+* Python 3.9+
+* [Streamlit](https://streamlit.io/)
+* [Sentence Transformers](https://www.sbert.net/)
+* PyPDF2
+* docx2txt
+* pandas
+* numpy
+* python-dotenv
+* google-generativeai (placeholder for AI suggestions)
+
+Install all dependencies:
+
 ```bash
 pip install -r requirements.txt
 ```
 
-3) **(Optional) Set OpenAI API key**  
-Create a `.env` file (copy `.env.example`) or pass in the UI.
+---
+
+## Setup
+
+1. Clone this repository:
+
 ```bash
-# .env
-OPENAI_API_KEY=your_key_here
+git clone <repo_url>
+cd <repo_folder>
 ```
 
-4) **Run the app**
+2. Create a `.env` file (optional) to store API keys for Gemini AI:
+
+```
+GENAI_API_KEY=<your_key_here>
+```
+
+3. Run the application:
+
 ```bash
 streamlit run app.py
 ```
 
-5) Open your browser at the URL printed in the terminal.
+---
+
+## Usage
+
+1. Open the app in your browser (Streamlit will provide a local URL).
+2. Upload **Job Descriptions** and **Resumes** via the sidebar.
+3. Click **Evaluate All** to compute scores.
+4. View **evaluation summary**, **charts**, and **top candidates**.
+5. Expand AI suggestions for resume improvement.
+6. Download CSV reports per JD.
 
 ---
 
-## 🔑 About AI integration
-This app supports OpenAI's **Responses API**. It will only call the API if an API key is detected (in `.env` or provided in the sidebar). Otherwise, it runs fully offline using heuristics.
+## File Structure
 
-> Docs: OpenAI API Quickstart, API Reference, and Responses API guides (see OpenAI docs).
-
-## 📁 Project layout
 ```
-ats-resume-score-checker/
-├─ app.py
-├─ requirements.txt
-├─ .env.example
-├─ sample_data/
-│  ├─ sample_resume.txt
-│  └─ sample_job_description.txt
-└─ README.md
+.
+├── app.py               # Main Streamlit application
+├── evaluations.db       # SQLite database for evaluations & embeddings
+├── requirements.txt     # Python dependencies
+├── README.md
+├── .env                 # Environment variables (optional)
 ```
 
-## 🧪 Try with sample data
-- `sample_data/sample_resume.txt`
-- `sample_data/sample_job_description.txt`
+---
 
-Paste them into the UI to see a demo score and suggestions.
+## How it Works
 
-## ⚠️ Disclaimer
-ATS systems vary. This tool provides **heuristics** and **AI‑generated suggestions** and should be used as guidance—not a guarantee of how a particular ATS will score your resume.
+1. **Text Extraction**: Supports PDF, DOCX, TXT.
+2. **Keyword Matching**: Computes percentage of JD keywords present in resume.
+3. **Semantic Similarity**: Uses `sentence-transformers` embeddings and cosine similarity.
+4. **Final Score**: Weighted average of keyword score & semantic similarity.
+5. **Verdict**:
+
+   * `High` (>=70)
+   * `Medium` (40–69)
+   * `Low` (<40)
+6. **AI Suggestions**: Placeholder for Gemini AI suggestions.
+
+---
+
+## Notes
+
+* Embeddings are cached in the SQLite database to improve performance.
+* Supports multiple uploads and incremental evaluations.
+* AI suggestions currently use a placeholder. Integrate Gemini AI for real-time suggestions.
+
+---
